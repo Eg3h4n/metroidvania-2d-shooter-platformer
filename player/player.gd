@@ -1,9 +1,12 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-@export var SPEED : int = 300
+@export var SPEED : int = 1000
+@export var MAX_HORIZONTAL_SPEED : int = 300
+@export var SLOW_DOWN_SPEED : int = 1500
 @export var JUMP_VELOCITY : int = -400
-@export var JUMP_HORIZONTAL : int = 150
+@export var JUMP_HORIZONTAL_SPEED : int = 1000
+@export var MAX_JUMP_HORIZONTAL_SPEED : int = 300
 
 enum State {Idle, Run, Jump}
 var current_state : State
@@ -20,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	player_animations()
-	print("State ", State.keys()[current_state])
+	#print("State ", State.keys()[current_state])
 	
 func player_falling(delta: float):
 	# Add the gravity.
@@ -37,9 +40,10 @@ func player_run(delta: float):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = get_input_movement()
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x += direction * SPEED * delta
+		velocity.x = clamp(velocity.x, -MAX_HORIZONTAL_SPEED, MAX_HORIZONTAL_SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SLOW_DOWN_SPEED * delta)
 		
 	if direction != 0 and is_on_floor():
 		current_state = State.Run
@@ -54,7 +58,8 @@ func player_jump(delta: float):
 		
 	if !is_on_floor() and current_state == State.Jump:
 		var direction = get_input_movement()
-		velocity.x = direction * JUMP_HORIZONTAL
+		velocity.x += direction * JUMP_HORIZONTAL_SPEED * delta
+		velocity.x = clamp(velocity.x, -MAX_JUMP_HORIZONTAL_SPEED, MAX_JUMP_HORIZONTAL_SPEED)
 		
 func player_animations():
 	if current_state == State.Idle:
