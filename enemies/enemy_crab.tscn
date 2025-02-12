@@ -91,3 +91,9 @@ frame_progress = 0.0121023
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_wi0au")
 debug_color = Color(0.841752, 0.00110027, 0.919181, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
