@@ -1,5 +1,9 @@
 extends CharacterBody2D
+
+var bullet = preload("res://player/bullet.tscn")
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var muzzle: Marker2D = $Muzzle
 
 @export var SPEED : int = 1000
 @export var MAX_HORIZONTAL_SPEED : int = 300
@@ -8,17 +12,21 @@ extends CharacterBody2D
 @export var JUMP_HORIZONTAL_SPEED : int = 1000
 @export var MAX_JUMP_HORIZONTAL_SPEED : int = 300
 
-enum State {Idle, Run, Jump}
+enum State {Idle, Run, Jump, Shoot}
 var current_state : State
+var muzzle_position
 
 func _ready() -> void:
 	current_state = State.Idle
+	muzzle_position = muzzle.position
 
 func _physics_process(delta: float) -> void:
 	player_falling(delta)
 	player_idle(delta)
 	player_run(delta)
 	player_jump(delta)
+	set_player_muzzle_position()
+	player_shooting(delta)
 	
 	move_and_slide()
 	
@@ -61,13 +69,33 @@ func player_jump(delta: float):
 		velocity.x += direction * JUMP_HORIZONTAL_SPEED * delta
 		velocity.x = clamp(velocity.x, -MAX_JUMP_HORIZONTAL_SPEED, MAX_JUMP_HORIZONTAL_SPEED)
 		
+func player_shooting(delta : float):
+	var direction = get_input_movement()
+	
+	if direction != 0 and Input.is_action_just_pressed("shoot"):
+		var bullet_instance = bullet.instantiate() as Node2D
+		bullet_instance.direction = direction
+		bullet_instance.global_position = muzzle.global_position
+		get_parent().add_child(bullet_instance)
+		current_state = State.Shoot
+		
+func set_player_muzzle_position():
+	var direction = get_input_movement()
+	
+	if direction > 0:
+		muzzle.position.x = muzzle_position.x
+	elif direction < 0:
+		muzzle.position.x = -muzzle_position.x
+	
 func player_animations():
 	if current_state == State.Idle:
 		animated_sprite_2d.play("idle")
-	elif current_state == State.Run:
+	elif current_state == State.Run and animated_sprite_2d.animation != "run_shoot":
 		animated_sprite_2d.play("run")
 	elif current_state == State.Jump:
 		animated_sprite_2d.play("jump")
+	elif current_state == State.Shoot:
+		animated_sprite_2d.play("run_shoot")
 	
 func get_input_movement() -> float:
 	var direction : float = Input.get_axis("move_left", "move_right")
