@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if current_node_state:
 		current_node_state.on_physics_process(delta)
 		
-	print("current dino state is: ", current_node_state_name.to_lower())
+	#print("current dino state is: ", current_node_state_name.to_lower())
 	
 func transition_to(node_state_name : String):
 	if node_state_name == current_node_state_name.to_lower():

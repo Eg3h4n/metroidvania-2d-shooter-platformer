@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://16ns7825lpxg"]
+[gd_scene load_steps=39 format=3 uid="uid://16ns7825lpxg"]
 
 [ext_resource type="Texture2D" uid="uid://c68apsrx7j2es" path="res://player/player-idle.png" id="1_172c4"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_dvkbf"]
@@ -247,6 +247,10 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ksdks"]
 height = 42.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c67s0"]
+radius = 11.0
+height = 34.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(-1, -1)
 collision_layer = 2
@@ -266,3 +270,14 @@ shape = SubResource("CapsuleShape2D_ksdks")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(18, -25)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="HurtBoxCollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -19)
+shape = SubResource("CapsuleShape2D_c67s0")
+debug_color = Color(0.920274, 0.103836, 0.641513, 0.42)
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

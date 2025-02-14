@@ -9,6 +9,7 @@ var enemy_death_effect = preload("res://enemies/enemy_death_effect.tscn")
 @export var SPEED : int = 800
 @export var wait_time : int = 3
 @export var health_amount : int = 3
+@export var damage_amount : int = 1
 
 enum State {Idle, Walk}
 var current_state : State
