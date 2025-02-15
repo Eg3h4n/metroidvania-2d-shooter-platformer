@@ -34,4 +34,4 @@ centered = false
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_n2obl")
 centered = false
-offset = Vector2(272.005, 0)
+offset = Vector2(272, 0)

@@ -47,7 +47,7 @@ func enemy_idle(delta: float) -> void:
 		current_state = State.Idle
 		
 func enemy_walk(delta: float) -> void:
-	if !can_walk:
+	if !can_walk or number_of_points <= 0:
 		return
 		
 	if abs(position.x - current_point.x) > 0.5:

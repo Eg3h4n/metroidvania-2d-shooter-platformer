@@ -4,6 +4,7 @@ var bullet = preload("res://player/bullet.tscn")
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
+@onready var hurt_animation_player: AnimationPlayer = $HurtAnimationPlayer
 
 @export var SPEED : int = 1000
 @export var MAX_HORIZONTAL_SPEED : int = 300
@@ -105,4 +106,5 @@ func get_input_movement() -> float:
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		print("enemy entered and hit for ", body.damage_amount)
+		hurt_animation_player.play("hurt")
 		HealthManager.decrease_health(body.damage_amount)
