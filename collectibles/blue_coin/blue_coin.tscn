@@ -62,7 +62,8 @@ script = ExtResource("1_fiki8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_62o0c")
 autoplay = "default"
-frame_progress = 0.741743
+frame = 3
+frame_progress = 0.917985
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16

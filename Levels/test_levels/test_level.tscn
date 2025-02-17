@@ -17,20 +17,14 @@ tile_map_data = PackedByteArray("AAAAAPz/AAAPAAgAAAAAAP3/AAAPAAgAAAAAAP7/AAAPAAg
 [node name="Player" parent="." index="3"]
 JUMP_VELOCITY = -300
 
-[node name="Enemies" type="Node" parent="." index="5"]
-
 [node name="EnemyCrab" parent="Enemies" index="0" instance=ExtResource("4_gxuwr")]
 position = Vector2(200, -81)
 
 [node name="EnemyDino" parent="Enemies" index="1" instance=ExtResource("3_alq1l")]
 position = Vector2(350, -94)
 
-[node name="Pickups" type="Node" parent="." index="6"]
-
 [node name="HealthPickup" parent="Pickups" index="0" instance=ExtResource("5_152uh")]
 position = Vector2(517, -79)
-
-[node name="Collectibles" type="Node" parent="." index="7"]
 
 [node name="BlueCoin" parent="Collectibles" index="0" instance=ExtResource("6_olu7x")]
 position = Vector2(249, -105)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8ta13tlx0osk"]
+[gd_scene load_steps=12 format=3 uid="uid://b8ta13tlx0osk"]
 
 [ext_resource type="PackedScene" uid="uid://bpgd2dnmvm8bj" path="res://ui/health_bar/health_bar.tscn" id="1_5k3t8"]
 [ext_resource type="Script" path="res://ui/game_screen.gd" id="1_o4i3t"]
 [ext_resource type="Texture2D" uid="uid://c38kasq3kteex" path="res://collectibles/coins-chests-etc-2-0.png" id="3_as0v0"]
+[ext_resource type="Texture2D" uid="uid://cn5rvwfnb0r0i" path="res://ui/icons8-pause-12.png" id="4_70kf6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb7aw"]
 atlas = ExtResource("3_as0v0")
@@ -86,6 +87,7 @@ layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
 sprite_frames = SubResource("SpriteFrames_i4mhn")
+autoplay = "default"
 frame = 4
 frame_progress = 0.91595
 centered = false
@@ -96,3 +98,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 12
 text = "0"
+
+[node name="PauseTextureButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_70kf6")
+
+[connection signal="pressed" from="MarginContainer/PauseTextureButton" to="." method="_on_pause_texture_button_pressed"]

@@ -700,6 +700,12 @@ position = Vector2(57, -80)
 script = ExtResource("5_j00w8")
 player = NodePath("../Player")
 
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="Collectibles" type="Node" parent="."]
+
 [node name="ForegroundLayer" type="TileMapLayer" parent="."]
 z_index = 1
 tile_set = SubResource("TileSet_kfb80")
