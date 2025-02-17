@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var bullet = preload("res://player/bullet.tscn")
+var player_death_effect = preload("res://player/player_death_effect/player_death_effect.tscn")
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
@@ -97,6 +98,12 @@ func player_animations():
 		animated_sprite_2d.play("jump")
 	elif current_state == State.Shoot:
 		animated_sprite_2d.play("run_shoot")
+		
+func player_death():
+	var player_death_effect_instance = player_death_effect.instantiate() as Node2D
+	player_death_effect_instance.global_position = global_position
+	get_parent().add_child(player_death_effect_instance)
+	queue_free()
 	
 func get_input_movement() -> float:
 	var direction : float = Input.get_axis("move_left", "move_right")
@@ -108,3 +115,7 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		print("enemy entered and hit for ", body.damage_amount)
 		hurt_animation_player.play("hurt")
 		HealthManager.decrease_health(body.damage_amount)
+		
+	if HealthManager.current_health == 0:
+		player_death()
+		
