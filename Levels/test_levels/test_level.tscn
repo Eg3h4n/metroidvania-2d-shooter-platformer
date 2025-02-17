@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://int4kowpplc1"]
+[gd_scene load_steps=7 format=4 uid="uid://int4kowpplc1"]
 
 [ext_resource type="PackedScene" uid="uid://buhk1dngfgkdu" path="res://Levels/base_level.tscn" id="1_lmgyo"]
 [ext_resource type="PackedScene" uid="uid://baijducbg1jfa" path="res://background/parallax_background.tscn" id="2_cpr8j"]
 [ext_resource type="PackedScene" uid="uid://c4b2vgooyu6e" path="res://enemies/dino/enemy_dino.tscn" id="3_alq1l"]
 [ext_resource type="PackedScene" uid="uid://ckpel044ysbaw" path="res://enemies/crab/enemy_crab.tscn" id="4_gxuwr"]
-[ext_resource type="PackedScene" uid="uid://b8ta13tlx0osk" path="res://ui/game_screen.tscn" id="5_ut53g"]
+[ext_resource type="PackedScene" uid="uid://ddk4riayl83hy" path="res://pickups/health_pickup/health_pickup.tscn" id="5_152uh"]
+[ext_resource type="PackedScene" uid="uid://ddfaougt15bik" path="res://collectibles/blue_coin/blue_coin.tscn" id="6_olu7x"]
 
 [node name="TestLevel" instance=ExtResource("1_lmgyo")]
 
@@ -16,10 +17,29 @@ tile_map_data = PackedByteArray("AAAAAPz/AAAPAAgAAAAAAP3/AAAPAAgAAAAAAP7/AAAPAAg
 [node name="Player" parent="." index="3"]
 JUMP_VELOCITY = -300
 
-[node name="EnemyDino" parent="." index="5" instance=ExtResource("3_alq1l")]
-position = Vector2(350, -94)
+[node name="Enemies" type="Node" parent="." index="5"]
 
-[node name="EnemyCrab" parent="." index="6" instance=ExtResource("4_gxuwr")]
+[node name="EnemyCrab" parent="Enemies" index="0" instance=ExtResource("4_gxuwr")]
 position = Vector2(200, -81)
 
-[node name="GameScreen" parent="." index="7" instance=ExtResource("5_ut53g")]
+[node name="EnemyDino" parent="Enemies" index="1" instance=ExtResource("3_alq1l")]
+position = Vector2(350, -94)
+
+[node name="Pickups" type="Node" parent="." index="6"]
+
+[node name="HealthPickup" parent="Pickups" index="0" instance=ExtResource("5_152uh")]
+position = Vector2(517, -79)
+
+[node name="Collectibles" type="Node" parent="." index="7"]
+
+[node name="BlueCoin" parent="Collectibles" index="0" instance=ExtResource("6_olu7x")]
+position = Vector2(249, -105)
+
+[node name="BlueCoin2" parent="Collectibles" index="1" instance=ExtResource("6_olu7x")]
+position = Vector2(488, -98)
+
+[node name="BlueCoin3" parent="Collectibles" index="2" instance=ExtResource("6_olu7x")]
+position = Vector2(575, -142)
+
+[node name="BlueCoin4" parent="Collectibles" index="3" instance=ExtResource("6_olu7x")]
+position = Vector2(668, -93)

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://script/game_manager.gd"
 HealthManager="*res://script/health_manager.gd"
+CollectibleManager="*res://script/collectible_manager.gd"
 
 [display]
 
@@ -62,6 +63,8 @@ shoot={
 2d_physics/layer_1="GROUND"
 2d_physics/layer_2="PLAYER"
 2d_physics/layer_3="ENEMY"
+2d_physics/layer_4="PICKUP"
+2d_physics/layer_5="COLLECTIBLES"
 
 [rendering]
 
