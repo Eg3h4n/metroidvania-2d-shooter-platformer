@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cy2i171y3a6l8"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cy2i171y3a6l8"]
 
 [ext_resource type="FontFile" uid="uid://d3c2nubm0p2kg" path="res://ui/theme/GravityRegular5.ttf" id="1_vtwwr"]
 
@@ -65,6 +65,17 @@ border_color = Color(0.231373, 0.0666667, 0.345098, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjngq"]
 bg_color = Color(0.909804, 0.109804, 0.611765, 0.54902)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugxdo"]
+bg_color = Color(0.423529, 0.0509804, 0.576471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q2py"]
+bg_color = Color(0.427451, 0.352941, 0.85098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.156863, 0.0156863, 0.223529, 1)
+
 [resource]
 Button/font_sizes/font_size = 10
 Button/fonts/font = ExtResource("1_vtwwr")
@@ -78,3 +89,5 @@ MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sjngq")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_ugxdo")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_0q2py")

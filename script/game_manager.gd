@@ -8,9 +8,12 @@ const LEVEL_1 = preload("res://Levels/level_1.tscn")
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0.44, 0.12, 0.53, 1.00))
 	
+	SettingsManager.load_settings()
+	
 func start_game():
 	if get_tree().paused:
-		continue_game()
+		get_tree().paused = false
+		get_tree().reload_current_scene()
 		return
 		
 	transition_to_scene(LEVEL_1.resource_path)
