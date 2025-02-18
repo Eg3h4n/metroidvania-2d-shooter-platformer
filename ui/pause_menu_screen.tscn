@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://oux5chbpngg5"]
+[gd_scene load_steps=3 format=3 uid="uid://oux5chbpngg5"]
 
 [ext_resource type="Script" path="res://ui/pause_menu_screen.gd" id="1_5ql32"]
-[ext_resource type="Texture2D" uid="uid://mogkkp20b0yi" path="res://ui/environment-preview.png" id="1_lvu33"]
 [ext_resource type="Theme" uid="uid://cy2i171y3a6l8" path="res://ui/theme/game_theme.tres" id="2_inahc"]
-[ext_resource type="Texture2D" uid="uid://cxcvd0us5lydq" path="res://ui/player-run-4.png" id="3_bo2a7"]
-[ext_resource type="Texture2D" uid="uid://cs8wt2he3vevs" path="res://ui/crab-walk-1.png" id="4_a3awh"]
 
 [node name="PauseMenuScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 2
 script = ExtResource("1_5ql32")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.686275, 0.25098, 0.643137, 1)
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -296.0
-offset_top = -80.0
-offset_right = 280.0
-offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_lvu33")
+color = Color(0, 0, 0, 0.470588)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -54,14 +46,6 @@ text = "CONTINUE"
 [node name="MainMenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "MAIN MENU"
-
-[node name="Player-run-4" type="Sprite2D" parent="."]
-position = Vector2(200, 216)
-texture = ExtResource("3_bo2a7")
-
-[node name="Crab-walk-1" type="Sprite2D" parent="."]
-position = Vector2(280, 224)
-texture = ExtResource("4_a3awh")
 
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

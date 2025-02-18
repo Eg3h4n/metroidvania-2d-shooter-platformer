@@ -699,6 +699,7 @@ position = Vector2(57, -80)
 position = Vector2(57, -80)
 script = ExtResource("5_j00w8")
 player = NodePath("../Player")
+smoothing_distance = 2
 
 [node name="Enemies" type="Node" parent="."]
 

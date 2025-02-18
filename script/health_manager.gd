@@ -7,7 +7,7 @@ signal on_health_change
 
 func _ready():
 	current_health = max_health
-
+	
 func decrease_health(health_amount : int):
 	current_health -= health_amount
 	
