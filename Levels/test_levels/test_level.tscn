@@ -16,6 +16,7 @@ tile_map_data = PackedByteArray("AAAAAPz/AAAPAAgAAAAAAP3/AAAPAAgAAAAAAP7/AAAPAAg
 
 [node name="Player" parent="." index="3"]
 JUMP_VELOCITY = -300
+jump_count = 2
 
 [node name="EnemyCrab" parent="Enemies" index="0" instance=ExtResource("4_gxuwr")]
 position = Vector2(200, -81)

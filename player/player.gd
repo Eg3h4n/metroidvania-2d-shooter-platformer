@@ -13,10 +13,12 @@ var player_death_effect = preload("res://player/player_death_effect/player_death
 @export var JUMP_VELOCITY : int = -400
 @export var JUMP_HORIZONTAL_SPEED : int = 1000
 @export var MAX_JUMP_HORIZONTAL_SPEED : int = 300
+@export var jump_count : int = 1
 
 enum State {Idle, Run, Jump, Shoot}
 var current_state : State
 var muzzle_position
+var current_jump_count : int
 
 func _ready() -> void:
 	current_state = State.Idle
@@ -61,9 +63,17 @@ func player_run(delta: float):
 		#print("State ", State.keys()[current_state])
 		
 func player_jump(delta: float):
+	var jump_input : bool = Input.is_action_just_pressed("jump")
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if jump_input and is_on_floor():
+		current_jump_count = 0
 		velocity.y = JUMP_VELOCITY
+		current_jump_count += 1
+		current_state = State.Jump
+		
+	if !is_on_floor() and jump_input and current_jump_count < jump_count:
+		velocity.y = JUMP_VELOCITY
+		current_jump_count += 1
 		current_state = State.Jump
 		
 	if !is_on_floor() and current_state == State.Jump:
