@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4xwsa8bp806i"]
+
+[ext_resource type="Script" path="res://Levels/door/door.gd" id="1_ioumi"]
+[ext_resource type="Texture2D" uid="uid://mjls3j6g0mn4" path="res://Levels/door/gate-03.png" id="2_pwsd1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btdlc"]
+size = Vector2(7, 48)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_ioumi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(24, -24)
+texture = ExtResource("2_pwsd1")
+
+[node name="ExitArea2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea2D"]
+position = Vector2(3.5, -24)
+shape = SubResource("RectangleShape2D_btdlc")
+debug_color = Color(0.900629, 0.30652, 0.137529, 0.42)
+
+[connection signal="body_entered" from="ExitArea2D" to="." method="_on_exit_area_2d_body_entered"]

@@ -2,7 +2,6 @@ extends Node
 
 const MAIN_MENU_SCREEN = preload("res://ui/main_menu_screen.tscn")
 const PAUSE_MENU_SCREEN = preload("res://ui/pause_menu_screen.tscn")
-const LEVEL_1 = preload("res://Levels/level_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +15,7 @@ func start_game():
 		get_tree().reload_current_scene()
 		return
 		
-	transition_to_scene(LEVEL_1.resource_path)
+	SceneManager.transition_to_scene("Level1")
 	
 func exit_game():
 	get_tree().quit()
@@ -34,7 +33,4 @@ func main_menu():
 	var main_menu_screen_instance = MAIN_MENU_SCREEN.instantiate()
 	get_tree().root.add_child(main_menu_screen_instance)
 	
-func transition_to_scene(scene_path : String):
-	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file(scene_path)
 	
