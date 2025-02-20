@@ -14,6 +14,7 @@ tile_map_data = PackedByteArray("AAAAAP3/AAAPAAgAAAAAAP7/AAAPAAgAAAAAAP//AAAOAAg
 
 [node name="Player" parent="." index="3"]
 position = Vector2(43, -191)
+jump_count = 2
 
 [node name="PlayerCamera2D" parent="." index="4"]
 limit_left = -15

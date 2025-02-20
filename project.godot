@@ -22,6 +22,7 @@ HealthManager="*res://script/health_manager.gd"
 CollectibleManager="*res://script/collectible_manager.gd"
 SettingsManager="*res://script/settings_manager.gd"
 SceneManager="*res://script/scene_manager.gd"
+InventoryManager="*res://script/inventory_manager.gd"
 
 [display]
 
@@ -68,6 +69,7 @@ shoot={
 2d_physics/layer_4="PICKUP"
 2d_physics/layer_5="COLLECTIBLES"
 2d_physics/layer_6="DOORS"
+2d_physics/layer_7="KEYS"
 
 [rendering]
 
