@@ -17,7 +17,7 @@ static func shoot_input() -> bool:
 
 static func shoot_up_input() -> bool:
 	var shoot_up_input := Input.is_action_just_pressed("shoot")
-	var up_input := Input.is_action_just_pressed("look_up")
+	var up_input := Input.is_action_pressed("look_up")
 	return up_input and shoot_up_input
 
 static func crouch_input() -> bool:

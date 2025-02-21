@@ -31,6 +31,9 @@ func on_physics_process(delta : float):
 	# fall state
 	if !character_body_2d.is_on_floor():
 		transition.emit("Fall")
+	# shoor run state
+	if GameInputEvents.shoot_input():
+		transition.emit("ShootRun")
 	
 func enter():
 	animated_sprite_2d.play("run")

@@ -29,10 +29,9 @@ func on_physics_process(delta : float):
 		transition.emit("ShootUp")
 
 func enter():
-	muzzle.position = Vector2(18, -26) if !animated_sprite_2d.flip_h else Vector2(-18, -26)
+	muzzle.position = Vector2(17, -14) if !animated_sprite_2d.flip_h else Vector2(-17, -14)
 	#get_tree().create_timer(hold_gun_time).timeout.connect(on_hold_gun_timeout)
-	animated_sprite_2d.play("shoot_stand")
-	gun_shooting()
+	animated_sprite_2d.play("shoot_crouch")
 
 func exit():
 	animated_sprite_2d.stop()
