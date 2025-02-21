@@ -5,13 +5,17 @@ var bullet_impact_effect = preload("res://player/bullet_impact_effect.tscn")
 var speed : int = 600
 var direction : int
 var damage_amount : int = 1
+var move_x_direction : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 	
 func _physics_process(delta: float) -> void:
-	move_local_x(direction * speed * delta)
+	if move_x_direction:
+		move_local_x(direction * speed * delta)
+	else:
+		move_local_y(direction * speed * delta)
 	
 func _on_timer_timeout() -> void:
 	queue_free()

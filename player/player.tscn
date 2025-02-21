@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://16ns7825lpxg"]
+[gd_scene load_steps=59 format=3 uid="uid://16ns7825lpxg"]
 
 [ext_resource type="Texture2D" uid="uid://c68apsrx7j2es" path="res://player/player-idle.png" id="1_172c4"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_dvkbf"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://player/player_states/run_state.gd" id="14_7x0va"]
 [ext_resource type="Script" path="res://player/player_states/jump_state.gd" id="15_3lnid"]
 [ext_resource type="Script" path="res://player/player_states/shoot_stand_state.gd" id="16_41dkj"]
+[ext_resource type="Script" path="res://player/player_states/shoot_up_state.gd" id="17_ho486"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fqj8q"]
 shader = ExtResource("2_2ua3w")
@@ -350,7 +351,7 @@ script = ExtResource("1_dvkbf")
 material = SubResource("ShaderMaterial_fqj8q")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_o7cqx")
-animation = &"shoot_stand"
+animation = &"shoot_up"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -396,9 +397,16 @@ character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 max_jump_count = 2
 
-[node name="ShootStand" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="ShootStand" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d", "muzzle")]
 script = ExtResource("16_41dkj")
 character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+muzzle = NodePath("../../Muzzle")
+
+[node name="ShootUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d", "muzzle")]
+script = ExtResource("17_ho486")
+character_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+muzzle = NodePath("../../Muzzle")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

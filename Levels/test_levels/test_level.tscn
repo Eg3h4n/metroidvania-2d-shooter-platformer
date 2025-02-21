@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://int4kowpplc1"]
+[gd_scene load_steps=8 format=4 uid="uid://int4kowpplc1"]
 
 [ext_resource type="PackedScene" uid="uid://buhk1dngfgkdu" path="res://Levels/base_level.tscn" id="1_lmgyo"]
 [ext_resource type="PackedScene" uid="uid://baijducbg1jfa" path="res://background/parallax_background.tscn" id="2_cpr8j"]
-[ext_resource type="PackedScene" uid="uid://c4b2vgooyu6e" path="res://enemies/dino/enemy_dino.tscn" id="3_alq1l"]
 [ext_resource type="PackedScene" uid="uid://ckpel044ysbaw" path="res://enemies/crab/enemy_crab.tscn" id="4_gxuwr"]
 [ext_resource type="PackedScene" uid="uid://bgmcat1yxngvo" path="res://Levels/keys/key.tscn" id="4_qyfa7"]
 [ext_resource type="PackedScene" uid="uid://ddk4riayl83hy" path="res://pickups/health_pickup/health_pickup.tscn" id="5_152uh"]
@@ -34,9 +33,6 @@ position = Vector2(57, -189)
 
 [node name="EnemyCrab" parent="Enemies" index="0" instance=ExtResource("4_gxuwr")]
 position = Vector2(200, -81)
-
-[node name="EnemyDino" parent="Enemies" index="1" instance=ExtResource("3_alq1l")]
-position = Vector2(350, -94)
 
 [node name="HealthPickup" parent="Pickups" index="0" instance=ExtResource("5_152uh")]
 position = Vector2(517, -79)

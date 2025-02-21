@@ -15,14 +15,20 @@ func on_physics_process(delta : float):
 	# fall state
 	if !character_body_2d.is_on_floor():
 		transition.emit("Fall")
-	#run state
+	# run state
 	var direction : float = GameInputEvents.movement_input()
 	if direction and character_body_2d.is_on_floor():
 		transition.emit("Run")
-	#jump state
+	# jump state
 	if GameInputEvents.jump_input():
 		transition.emit("Jump")
-		
+	# shoot standing state
+	if GameInputEvents.shoot_input():
+		transition.emit("ShootStand")
+	# shoot up state
+	if GameInputEvents.shoot_up_input():
+		transition.emit("ShootUp")
+
 func enter():
 	animated_sprite_2d.play("idle")
 	
