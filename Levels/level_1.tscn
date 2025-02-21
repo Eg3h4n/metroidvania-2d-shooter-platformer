@@ -28,7 +28,6 @@ key_id = "2"
 
 [node name="Player" parent="." index="4"]
 position = Vector2(48, -32)
-jump_count = 2
 
 [node name="PlayerCamera2D" parent="." index="5"]
 limit_left = -64

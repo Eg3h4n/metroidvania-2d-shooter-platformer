@@ -30,8 +30,7 @@ position = Vector2(824, -78)
 key_id = "1"
 
 [node name="Player" parent="." index="4"]
-JUMP_VELOCITY = -300
-jump_count = 2
+position = Vector2(57, -189)
 
 [node name="EnemyCrab" parent="Enemies" index="0" instance=ExtResource("4_gxuwr")]
 position = Vector2(200, -81)
