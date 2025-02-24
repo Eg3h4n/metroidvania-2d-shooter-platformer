@@ -10,6 +10,7 @@ extends NodeState
 @export var jump_gravity : int = 1000
 
 var current_jump_count : int
+var coyote_jump : bool
 
 func on_process(delta : float):
 	pass
@@ -20,6 +21,12 @@ func on_physics_process(delta : float):
 	if character_body_2d.is_on_floor():
 		current_jump_count = 0
 		character_body_2d.velocity.y = jump_height
+		coyote_jump = false
+		current_jump_count += 1
+		
+	if coyote_jump:
+		character_body_2d.velocity.y  = jump_height
+		coyote_jump = false
 		current_jump_count += 1
 	
 	#multiple jump logic
@@ -38,8 +45,13 @@ func on_physics_process(delta : float):
 	# idle state
 	if character_body_2d.is_on_floor():
 		transition.emit("Idle")
+	# wall cling state
+	if GameInputEvents.wall_cling_input() and character_body_2d.is_on_wall():
+		transition.emit("ShootWallCling")
 func enter():
+	coyote_jump = true
 	animated_sprite_2d.play("jump")
 	
 func exit():
+	coyote_jump = false
 	animated_sprite_2d.stop()

@@ -6,18 +6,34 @@ var bullet = preload("res://player/bullet.tscn")
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var muzzle: Marker2D
 
+var wall_cling_direction: Vector2
+
 func on_process(delta : float):
 	pass
 
 func on_physics_process(delta : float):
-	if GameInputEvents.shoot_input():
-		gun_shooting()
+	character_body_2d.velocity.y = 0
 	
-	# transition states
-	# idle state
-	# run state
 	var direction : float = GameInputEvents.movement_input()
 	
+	if direction == 0 and wall_cling_direction == Vector2.ZERO:
+		animated_sprite_2d.flip_h = true
+		wall_cling_direction = Vector2.RIGHT
+	
+	if direction < 0 and wall_cling_direction == Vector2.ZERO:
+		animated_sprite_2d.flip_h = false
+		wall_cling_direction = Vector2.LEFT
+	
+	if GameInputEvents.shoot_input():
+		gun_shooting()
+		
+	character_body_2d.move_and_slide()
+	# transition states
+	# Fall state
+	if GameInputEvents.fall_input():
+		transition.emit("Fall")
+	# idle state
+	# run state
 	if direction and character_body_2d.is_on_floor():
 		transition.emit("Run")
 	# jump state
@@ -28,15 +44,12 @@ func on_physics_process(delta : float):
 		transition.emit("ShootUp")
 
 func enter():
-	muzzle.position = Vector2(17, -14) if !animated_sprite_2d.flip_h else Vector2(-17, -14)
-	#get_tree().create_timer(hold_gun_time).timeout.connect(on_hold_gun_timeout)
-	animated_sprite_2d.play("shoot_crouch")
+	muzzle.position = Vector2(21, -26) if !animated_sprite_2d.flip_h else Vector2(-21, -26)
+	animated_sprite_2d.play("shoot_wall_cling")
 
 func exit():
+	wall_cling_direction = Vector2.ZERO
 	animated_sprite_2d.stop()
-	
-func on_hold_gun_timeout():
-	transition.emit("Idle")
 
 func gun_shooting():
 	var direction : float = -1 if animated_sprite_2d.flip_h else 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://16ns7825lpxg"]
+[gd_scene load_steps=62 format=3 uid="uid://16ns7825lpxg"]
 
 [ext_resource type="Texture2D" uid="uid://c68apsrx7j2es" path="res://player/player-idle.png" id="1_172c4"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_dvkbf"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://player/player_states/shoot_up_state.gd" id="17_ho486"]
 [ext_resource type="Script" path="res://player/player_states/shoot_crouch_state.gd" id="18_fixq2"]
 [ext_resource type="Script" path="res://player/player_states/shoot_run_state.gd" id="19_i27jd"]
+[ext_resource type="Script" path="res://player/player_states/shoot_wall_cling_state.gd" id="20_daedn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fqj8q"]
 shader = ExtResource("2_2ua3w")
@@ -338,6 +339,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ksdks"]
+radius = 8.0
 height = 42.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c67s0"]
@@ -353,11 +355,10 @@ script = ExtResource("1_dvkbf")
 material = SubResource("ShaderMaterial_fqj8q")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_o7cqx")
-animation = &"shoot_up"
+animation = &"shoot_wall_cling"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_ksdks")
 
@@ -419,6 +420,12 @@ muzzle = NodePath("../../Muzzle")
 
 [node name="ShootRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d", "muzzle")]
 script = ExtResource("19_i27jd")
+character_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+muzzle = NodePath("../../Muzzle")
+
+[node name="ShootWallCling" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d", "muzzle")]
+script = ExtResource("20_daedn")
 character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 muzzle = NodePath("../../Muzzle")
