@@ -7,6 +7,7 @@ var bullet = preload("res://player/bullet.tscn")
 @export var muzzle: Marker2D
 
 var wall_cling_direction: Vector2
+var sprite_is_flipped : bool
 
 func on_process(delta : float):
 	pass
@@ -16,11 +17,11 @@ func on_physics_process(delta : float):
 	
 	var direction : float = GameInputEvents.movement_input()
 	
-	if direction == 0 and wall_cling_direction == Vector2.ZERO:
+	if !sprite_is_flipped and wall_cling_direction == Vector2.ZERO:
 		animated_sprite_2d.flip_h = true
 		wall_cling_direction = Vector2.RIGHT
 	
-	if direction < 0 and wall_cling_direction == Vector2.ZERO:
+	if sprite_is_flipped and wall_cling_direction == Vector2.ZERO:
 		animated_sprite_2d.flip_h = false
 		wall_cling_direction = Vector2.LEFT
 	
@@ -42,15 +43,16 @@ func on_physics_process(delta : float):
 	# shoot up state
 	if GameInputEvents.shoot_up_input():
 		transition.emit("ShootUp")
-
+	
 func enter():
-	muzzle.position = Vector2(21, -26) if !animated_sprite_2d.flip_h else Vector2(-21, -26)
+	sprite_is_flipped = animated_sprite_2d.flip_h
+	muzzle.position = Vector2(21, -26) if animated_sprite_2d.flip_h else Vector2(-21, -26)
 	animated_sprite_2d.play("shoot_wall_cling")
-
+	
 func exit():
 	wall_cling_direction = Vector2.ZERO
 	animated_sprite_2d.stop()
-
+	
 func gun_shooting():
 	var direction : float = -1 if animated_sprite_2d.flip_h else 1
 	
